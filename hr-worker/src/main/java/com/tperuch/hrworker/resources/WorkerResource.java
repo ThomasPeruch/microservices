@@ -1,7 +1,7 @@
 package com.tperuch.hrworker.resources;
 
 import com.tperuch.hrworker.entities.Worker;
-import com.tperuch.hrworker.repository.WorkerRepository;
+import com.tperuch.hrworker.service.WorkerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +16,17 @@ import java.util.List;
 @AllArgsConstructor
 public class WorkerResource {
 
-    private WorkerRepository repository;
+    private WorkerService service;
 
     @GetMapping
     public ResponseEntity<List<Worker>> findAll(){
-        List<Worker> list = repository.findAll();
+        List<Worker> list = service.findAll();
         return ResponseEntity.ok(list);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Worker> findById(@PathVariable Long id){
+        Worker entity = service.findById(id);
+        return ResponseEntity.ok(entity);
     }
 }
