@@ -1,4 +1,4 @@
-package com.tperuch.hrpayroll.service;
+package com.tperuch.hrpayroll.services;
 
 import com.tperuch.hrpayroll.entities.Payment;
 import org.springframework.stereotype.Service;
@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class PaymentService {
 
     public Payment getPayment(Long workerId, Integer daysOfWork){
-        return new Payment("Bob", 100.0, 5);
+        return new Payment("Bob", 100.0, daysOfWork);
     }
 }
