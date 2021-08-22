@@ -2,7 +2,7 @@ package com.tperuch.hrpayroll.services;
 
 import com.tperuch.hrpayroll.entities.Payment;
 import com.tperuch.hrpayroll.entities.Worker;
-import com.tperuch.hrpayroll.rest.PaymentRestService;
+import com.tperuch.hrpayroll.feignclients.WorkerFeignClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class PaymentService {
 
-    private PaymentRestService restService;
+    private WorkerFeignClient feignClient;
 
     public Payment getPayment(Long workerId, Integer daysOfWork) {
-        Worker worker = restService.getPayment(String.valueOf(workerId));
+        Worker worker = feignClient.findById(workerId).getBody();
         return new Payment(worker.getName(), worker.getDailyIncome(), daysOfWork);
 
 
