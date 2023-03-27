@@ -8,7 +8,6 @@ public class Payment {
 
     public Payment() { }
 
-
     public Payment(String name, Double dailyIncome, Integer days) {
         this.name = name;
         this.dailyIncome = dailyIncome;
